@@ -11,7 +11,7 @@ async def start(update: Update, context: CallbackContext) -> None:
 
 async def tag_all(update: Update, context: CallbackContext) -> None:
     chat_id = update.message.chat_id
-    members = await context.bot.get_chat_members(chat_id)
+    members = await context.bot.get_chat_administrators(chat_id)
     
     tags = ' '.join([f'@{member.user.username}' for member in members if member.user.username])
     
@@ -22,7 +22,7 @@ async def tag_all(update: Update, context: CallbackContext) -> None:
 
 async def tag_all_pin(update: Update, context: CallbackContext) -> None:
     chat_id = update.message.chat_id
-    members = await context.bot.get_chat_members(chat_id)
+    members = await context.bot.get_chat_administrators(chat_id)
     
     tags = ' '.join([f'@{member.user.username}' for member in members if member.user.username])
     
