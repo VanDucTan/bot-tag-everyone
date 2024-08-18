@@ -15,24 +15,24 @@ async def start(update: Update, context: CallbackContext) -> None:
 
 async def new_member(update: Update, context: CallbackContext) -> None:
     if update.chat_member.new_chat_member.status == 'member':
-        username = update.chat_member.new_chat_member.user.username
-        if username and username not in members_list:
-            members_list.append(username)
+        Username = update.chat_member.new_chat_member.user.Username
+        if Username and Username not in members_list:
+            members_list.append(Username)
 
 async def tag_all(update: Update, context: CallbackContext) -> None:
     if members_list:
-        tags = ' '.join([f'@{username}' for username in members_list])
+        tags = ' '.join([f'@{Username}' for Username in members_list])
         await update.message.reply_text(tags)
     else:
-        await update.message.reply_text("Không tìm thấy username cho các thành viên.")
+        await update.message.reply_text("Không tìm thấy Username cho các thành viên.")
 
 async def tag_all_pin(update: Update, context: CallbackContext) -> None:
     if members_list:
-        tags = ' '.join([f'@{username}' for username in members_list])
+        tags = ' '.join([f'@{Username}' for Username in members_list])
         message = await update.message.reply_text(tags)
         await context.bot.pin_chat_message(update.message.chat_id, message.message_id)
     else:
-        await update.message.reply_text("Không tìm thấy username cho các thành viên.")
+        await update.message.reply_text("Không tìm thấy Username cho các thành viên.")
 
 async def main() -> None:
     application = Application.builder().token(TOKEN).build()
